@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.5'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.grocery_card'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.1.1.RELEASE'
+	implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.15.RELEASE'
+	implementation group: 'org.springframework', name: 'spring-web', version: '6.0.8'
+	implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.0.8'
+	implementation group: 'org.springframework', name: 'spring-context', version: '6.0.7'
+	implementation group: 'org.springframework', name: 'spring-jdbc', version: '6.0.8'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.5'
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.32'
+    implementation 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
