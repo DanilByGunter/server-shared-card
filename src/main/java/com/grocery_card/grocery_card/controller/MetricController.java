@@ -12,12 +12,19 @@ import java.util.List;
 public class MetricController {
     @Autowired
     private MetricDao metricDao;
+
     @GetMapping("/get_all")
     public List<Metric> getAllMetrics(){
         return metricDao.getAllMetrics();}
+
+    @GetMapping("/get_count")
+    public Long getCountMetric(){
+        return metricDao.getCountMetric();}
+
     @GetMapping("/{id}")
     public Metric getMetricById(@PathVariable("id") Integer id) {
         return metricDao.getMetricById(id);}
+
     @PostMapping("/save")
     public void save(@RequestBody Metric metric){
         metricDao.save(metric);}

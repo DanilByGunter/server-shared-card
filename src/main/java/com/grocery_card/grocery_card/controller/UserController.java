@@ -32,6 +32,5 @@ public class UserController {
     @PostMapping("/save")
     public Long save(@RequestBody User user){
         userDao.save(user);
-        return userDao.findLastId();
-    }
+        return userDao.findLastId();}
 }

@@ -15,6 +15,9 @@ public class ShopController {
     @GetMapping("/get_all")
     public List<Shop> getAllShops(){
         return shopDao.getAllShops();}
+    @GetMapping("/get_count")
+    public Long getCountShops(){
+        return shopDao.getCountShops();}
     @GetMapping("/{id}")
     public Shop getShopById(@PathVariable("id") Integer id) {
         return shopDao.getShopById(id);}

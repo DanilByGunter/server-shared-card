@@ -13,13 +13,20 @@ public class ShopDao {
     private ShopRepository repository;
     public void save(Shop shop){
         repository.save(shop);}
+
     public List<Shop> getAllShops(){
         List<Shop> shops = new ArrayList<>();
         Streamable.of(repository.findAll())
                 .forEach(shops::add);
         return shops;}
+
+    public Long getCountShops(){
+        return repository.count();
+    }
+
     public Shop getShopById(Integer id){
         return repository.findById(id).orElse(null);}
+
     public void delete(Shop shop){
         repository.delete(shop);
     }

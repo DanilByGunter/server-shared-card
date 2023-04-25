@@ -13,14 +13,20 @@ public class MetricDao {
     private MetricRepository repository;
     public void save(Metric metric){
         repository.save(metric);}
+
     public List<Metric> getAllMetrics(){
         List<Metric> metrics = new ArrayList<>();
         Streamable.of(repository.findAll())
                 .forEach(metrics::add);
         return metrics;
     }
+
+    public Long getCountMetric(){
+        return repository.count();}
+
     public Metric getMetricById(Integer id){
         return repository.findById(id).orElse(null);}
+
     public void delete(Metric metric){
         repository.delete(metric);}
 }

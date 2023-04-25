@@ -18,6 +18,16 @@ public class User {
     private String name;
     @Lob
     private byte[] photo;
+
+    public User() {
+    }
+
+    public User(long id, String name, byte[] photo) {
+        this.id = id;
+        this.name = name;
+        this.photo = photo;
+    }
+
     public long getId_user() {
         return id;}
 

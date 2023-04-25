@@ -12,14 +12,20 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryDao categoryDao;
+
     @GetMapping("/get_all")
     public List<Category> getAllCategories(){
         return categoryDao.getAllCategories();}
+
+    @GetMapping("/get_count")
+    public Long getCountCategory(){
+        return categoryDao.getCountCategory();}
+
     @GetMapping("/{id}")
     public Category getCategoryById(@PathVariable("id") Integer id) {
         return categoryDao.getCategoryById(id);}
+
     @PostMapping("/save")
     public void save(@RequestBody Category category){
         categoryDao.save(category);}
-
 }
