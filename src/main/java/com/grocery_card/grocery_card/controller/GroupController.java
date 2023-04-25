@@ -40,15 +40,16 @@ public class GroupController {
         theAllGroupDao.updateGroupPhoto(group.getId(), group.getPhoto());}
 
     @PostMapping("/save")
-    public void save(@Validated @RequestBody TheAllGroup theAllGroup){
+    public Long save(@Validated @RequestBody TheAllGroup theAllGroup){
         BeanFactory context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TheGroupIdRepository theGroupIdRepository = (TheGroupIdRepository) context.getBean("theGroupIdRepository");
         CheckRepository checkRepository = (CheckRepository) context.getBean("checkRepository");
         TargetRepository targetRepository = (TargetRepository) context.getBean("targetRepository");
         theAllGroupDao.save(theAllGroup);
-        long id = findLastId();
+        Long id = findLastId();
         theGroupIdRepository.createTable(id);
         checkRepository.createTable(id);
         targetRepository.createTable(id);
+        return id;
     }
 }
