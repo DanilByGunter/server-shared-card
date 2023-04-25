@@ -30,6 +30,8 @@ public class UserController {
     public void updateUserPhoto(@RequestBody NewPhoto user){
         userDao.updateUserPhoto(user.getId(), user.getPhoto());}
     @PostMapping("/save")
-    public void save(@RequestBody User user){
-        userDao.save(user);}
+    public Long save(@RequestBody User user){
+        userDao.save(user);
+        return userDao.findLastId();
+    }
 }
