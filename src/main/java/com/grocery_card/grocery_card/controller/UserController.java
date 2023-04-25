@@ -1,7 +1,5 @@
 package com.grocery_card.grocery_card.controller;
 
-import com.grocery_card.grocery_card.dto.NewName;
-import com.grocery_card.grocery_card.dto.NewPhoto;
 import com.grocery_card.grocery_card.model.user.User;
 import com.grocery_card.grocery_card.model.user.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +22,11 @@ public class UserController {
     public Long findLastId(){
         return userDao.findLastId();}
     @PutMapping("/update_name")
-    public void updateUserName(@RequestBody NewName user){
-        userDao.updateUserName(user.getId(), user.getName());}
+    public void updateUserName(@RequestBody User user){
+        userDao.updateUserName(user.getId_user(), user.getName());}
     @PutMapping("/update_photo")
-    public void updateUserPhoto(@RequestBody NewPhoto user){
-        userDao.updateUserPhoto(user.getId(), user.getPhoto());}
+    public void updateUserPhoto(@RequestBody User user){
+        userDao.updateUserPhoto(user.getId_user(), user.getPhoto());}
     @PostMapping("/save")
     public Long save(@RequestBody User user){
         userDao.save(user);

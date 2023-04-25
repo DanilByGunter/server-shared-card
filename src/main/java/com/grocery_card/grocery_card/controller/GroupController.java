@@ -1,7 +1,5 @@
 package com.grocery_card.grocery_card.controller;
 
-import com.grocery_card.grocery_card.dto.NewName;
-import com.grocery_card.grocery_card.dto.NewPhoto;
 import com.grocery_card.grocery_card.model.check.CheckRepository;
 import com.grocery_card.grocery_card.model.groupid.TheGroupIdRepository;
 import com.grocery_card.grocery_card.model.target.TargetRepository;
@@ -34,11 +32,11 @@ public class GroupController {
         return theAllGroupDao.findLastId();}
 
     @PutMapping("/update_name")
-    public void updateGroupName(@RequestBody NewName group){
+    public void updateGroupName(@RequestBody TheAllGroup group){
         theAllGroupDao.updateGroupName(group.getId(), group.getName());}
 
     @PutMapping("/update_photo")
-    public void updateGroupPhoto(@RequestBody NewPhoto group){
+    public void updateGroupPhoto(@RequestBody TheAllGroup group){
         theAllGroupDao.updateGroupPhoto(group.getId(), group.getPhoto());}
 
     @PostMapping("/save")
