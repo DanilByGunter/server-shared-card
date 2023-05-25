@@ -1,16 +1,20 @@
 package com.grocery_card.grocery_card.model.theallgroup;
 
+import com.grocery_card.grocery_card.dto.UsersGroup;
+import com.grocery_card.grocery_card.model.groupid.TheGroupId;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Transactional
 @Validated
 @Entity
 public class TheAllGroup {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,6 +22,9 @@ public class TheAllGroup {
     private String name;
     @Lob
     private byte[] photo;
+
+
+
     public long getId() {
         return id;}
 
