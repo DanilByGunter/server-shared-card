@@ -1,5 +1,6 @@
 package com.grocery_card.grocery_card.model.groupid;
 
+import com.grocery_card.grocery_card.dto.TheAllGroupWithUsers;
 import com.grocery_card.grocery_card.dto.UsersGroup;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,14 @@ public class TheGroupIdDao extends JdbcDaoSupport implements TheGroupIdRepositor
         List<UsersGroup> users = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<UsersGroup>(UsersGroup.class));
         return users;
     }
+
+//    @Override
+//    public TheAllGroupWithUsers getGroup(long id) {
+//        String sql = "select id_user, status,user.name ,user.id,user.photo ,the_all_group.id as group_id," +
+//                "the_all_group.name as group_name, the_all_group.photo as group_photo from group_"+id+" " +
+//                "inner join user on id_user = user.id " +
+//                "inner join the_all_group on "+id+" = the_all_group.id;";
+//        Li
+//        return null;
+//    }
 }

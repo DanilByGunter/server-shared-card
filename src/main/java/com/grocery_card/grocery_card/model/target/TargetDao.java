@@ -59,10 +59,10 @@ public class TargetDao extends JdbcDaoSupport implements TargetRepository {
     public int save(long id, Target target) {
         String sql = "INSERT target_" + String.valueOf(id) + "(status, product_name, id_category, " +
                 "price, id_user, date_first) VALUES(0, '" +
-                String.valueOf(target.getProduct_name()) +  "', " +
-                String.valueOf(target.getId_category()) +  ", " +
-                String.valueOf(target.getPrice()) +  ", " +
-                String.valueOf(target.getId_user()) +  ", now())";
+                String.valueOf(target.getProduct_name()) + "', " +
+                String.valueOf(target.getId_category()) + ", " +
+                String.valueOf(target.getPrice()) + ", " +
+                String.valueOf(target.getId_user()) + ", now())";
         getJdbcTemplate().execute(sql);
         sql = "SELECT id_product FROM target_" + String.valueOf(id) + " ORDER BY id_product DESC LIMIT 1";
         Integer count = getJdbcTemplate().queryForObject(sql, Integer.class);
@@ -72,7 +72,7 @@ public class TargetDao extends JdbcDaoSupport implements TargetRepository {
     @Override
     public void updateStatus(long id, Target target) {
         String sql = "UPDATE target_" + String.valueOf(id) +
-                " SET id_buyer = "  + String.valueOf(target.getId_buyer()) + ", " +
+                " SET id_buyer = " + String.valueOf(target.getId_buyer()) + ", " +
                 "price = " + String.valueOf(target.getPrice()) + ", " +
                 "id_shop = " + String.valueOf(target.getId_shop()) + ", " +
                 "status = 1, date_buy = now() WHERE id_product = " + String.valueOf(target.getId_product());

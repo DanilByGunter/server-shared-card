@@ -1,6 +1,8 @@
 package com.grocery_card.grocery_card.controller;
 
+import com.grocery_card.grocery_card.dto.TheAllGroupWithUserId;
 import com.grocery_card.grocery_card.model.check.CheckRepository;
+import com.grocery_card.grocery_card.model.groupid.TheGroupId;
 import com.grocery_card.grocery_card.model.groupid.TheGroupIdRepository;
 import com.grocery_card.grocery_card.model.target.TargetRepository;
 import com.grocery_card.grocery_card.model.theallgroup.TheAllGroup;
@@ -40,14 +42,16 @@ public class GroupController {
         theAllGroupDao.updateGroupPhoto(group.getId(), group.getPhoto());}
 
     @PostMapping("/save")
-    public Long save(@Validated @RequestBody TheAllGroup theAllGroup){
+    public Long save(@Validated @RequestBody TheAllGroupWithUserId theAllGroup){
         BeanFactory context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TheGroupIdRepository theGroupIdRepository = (TheGroupIdRepository) context.getBean("theGroupIdRepository");
         CheckRepository checkRepository = (CheckRepository) context.getBean("checkRepository");
         TargetRepository targetRepository = (TargetRepository) context.getBean("targetRepository");
-        theAllGroupDao.save(theAllGroup);
+
+        theAllGroupDao.save(theAllGroup.getAllGroup());
         Long id = findLastId();
         theGroupIdRepository.createTable(id);
+        theGroupIdRepository.save(id,theAllGroup.getGroupId());
         checkRepository.createTable(id);
         targetRepository.createTable(id);
         return id;
