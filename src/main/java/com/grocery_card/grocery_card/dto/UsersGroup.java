@@ -2,6 +2,8 @@ package com.grocery_card.grocery_card.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
+
 public class UsersGroup {
     @JsonProperty("id")
     private Long id;
@@ -44,4 +46,14 @@ public class UsersGroup {
 
     public void setStatus(int status) {
         this.status = status;}
+
+    @Override
+    public String toString() {
+        return "UsersGroup{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", photo=" + Arrays.toString(photo) +
+                ", status=" + status +
+                '}';
+    }
 }

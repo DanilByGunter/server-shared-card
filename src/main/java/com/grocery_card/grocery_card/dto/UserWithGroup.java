@@ -18,6 +18,9 @@ public class UserWithGroup {
 
     }
 
+    public UserWithGroup() {
+    }
+
     public String getNameGroup() {
         return nameGroup;
     }

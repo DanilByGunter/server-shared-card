@@ -13,6 +13,14 @@ public class TheAllGroupWithUsers {
     private TheAllGroup allGroup;
     private List<UsersGroup> users;
 
+    public TheAllGroupWithUsers() {
+    }
+
+    public TheAllGroupWithUsers(TheAllGroup allGroup, List<UsersGroup> users) {
+        this.allGroup = allGroup;
+        this.users = users;
+    }
+
     public TheAllGroup getAllGroup() {
         return allGroup;
     }
@@ -27,5 +35,13 @@ public class TheAllGroupWithUsers {
 
     public void setUsers(List<UsersGroup> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "TheAllGroupWithUsers{" +
+                "allGroup=" + allGroup +
+                ", users=" + users +
+                '}';
     }
 }

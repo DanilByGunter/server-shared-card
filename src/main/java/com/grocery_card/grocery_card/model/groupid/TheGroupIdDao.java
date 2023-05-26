@@ -1,7 +1,9 @@
 package com.grocery_card.grocery_card.model.groupid;
 
 import com.grocery_card.grocery_card.dto.TheAllGroupWithUsers;
+import com.grocery_card.grocery_card.dto.UserWithGroup;
 import com.grocery_card.grocery_card.dto.UsersGroup;
+import com.grocery_card.grocery_card.model.theallgroup.TheAllGroup;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -44,6 +46,27 @@ public class TheGroupIdDao extends JdbcDaoSupport implements TheGroupIdRepositor
         List<UsersGroup> users = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<UsersGroup>(UsersGroup.class));
         return users;
     }
+    public TheAllGroupWithUsers getTheAllGroupWithUsers(UserWithGroup user){
+        save(user.getIdGroup(), new TheGroupId(user.getIdUser(), 1));
+        List<UsersGroup> users = getAll(user.getIdGroup());
+        String sql = "SELECT tag.id, tag.name, tag.photo FROM the_all_group AS tag WHERE id = " + String.valueOf(user.getIdGroup());
+        List<TheAllGroup> theAllGroup = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<TheAllGroup>(TheAllGroup.class));
+        TheAllGroupWithUsers theAllGroupWithUsers = new TheAllGroupWithUsers();
+        theAllGroupWithUsers.setAllGroup(theAllGroup.get(0));
+        theAllGroupWithUsers.setUsers(users);
+        System.out.println(theAllGroupWithUsers.toString());
+        return theAllGroupWithUsers;
+    }
+//    public List<UserswithGroup> getUsersWithGorup(long id){
+//        String sql = "select * from the_all_group join group_" + String.valueOf(id) + " where id=" + String.valueOf(id);
+//        List<UserswithGroup> group = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<UserswithGroup>(UserswithGroup.class));
+//
+//        for (UserswithGroup us:
+//             group) {
+//            System.out.println(us.getId() + " " + us.getId_user() + " " + us.getName() + " " + us.getStatus());
+//        }
+//        return group;
+//    }
 
 //    @Override
 //    public TheAllGroupWithUsers getGroup(long id) {
