@@ -25,11 +25,8 @@ public class TheGroupIdDao extends JdbcDaoSupport implements TheGroupIdRepositor
 
     @Override
     public void save(long id, TheGroupId theGroupId){
-        String sql = "SELECT COUNT(*) group_" + String.valueOf(id);
-        Integer count =  getJdbcTemplate().queryForObject(sql, Integer.class);
-        Integer status = count == 0 ? 1:0;
-        sql = "INSERT INTO group_" + String.valueOf(id) + "(id_user, status) VALUES(" +
-                String.valueOf(theGroupId.getId()) + "," + String.valueOf(status) + ")";
+        String sql = "INSERT INTO group_" + String.valueOf(id) + "(id_user, status) VALUES(" +
+                String.valueOf(theGroupId.getId()) + "," + theGroupId.getStatus() + ")";
         getJdbcTemplate().execute(sql);}
 
     @Override
@@ -46,35 +43,4 @@ public class TheGroupIdDao extends JdbcDaoSupport implements TheGroupIdRepositor
         List<UsersGroup> users = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<UsersGroup>(UsersGroup.class));
         return users;
     }
-    public TheAllGroupWithUsers getTheAllGroupWithUsers(UserWithGroup user){
-        save(user.getIdGroup(), new TheGroupId(user.getIdUser(), 1));
-        List<UsersGroup> users = getAll(user.getIdGroup());
-        String sql = "SELECT tag.id, tag.name, tag.photo FROM the_all_group AS tag WHERE id = " + String.valueOf(user.getIdGroup());
-        List<TheAllGroup> theAllGroup = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<TheAllGroup>(TheAllGroup.class));
-        TheAllGroupWithUsers theAllGroupWithUsers = new TheAllGroupWithUsers();
-        theAllGroupWithUsers.setAllGroup(theAllGroup.get(0));
-        theAllGroupWithUsers.setUsers(users);
-        System.out.println(theAllGroupWithUsers.toString());
-        return theAllGroupWithUsers;
-    }
-//    public List<UserswithGroup> getUsersWithGorup(long id){
-//        String sql = "select * from the_all_group join group_" + String.valueOf(id) + " where id=" + String.valueOf(id);
-//        List<UserswithGroup> group = getJdbcTemplate().query(sql, new BeanPropertyRowMapper<UserswithGroup>(UserswithGroup.class));
-//
-//        for (UserswithGroup us:
-//             group) {
-//            System.out.println(us.getId() + " " + us.getId_user() + " " + us.getName() + " " + us.getStatus());
-//        }
-//        return group;
-//    }
-
-//    @Override
-//    public TheAllGroupWithUsers getGroup(long id) {
-//        String sql = "select id_user, status,user.name ,user.id,user.photo ,the_all_group.id as group_id," +
-//                "the_all_group.name as group_name, the_all_group.photo as group_photo from group_"+id+" " +
-//                "inner join user on id_user = user.id " +
-//                "inner join the_all_group on "+id+" = the_all_group.id;";
-//        Li
-//        return null;
-//    }
 }

@@ -1,10 +1,7 @@
 package com.grocery_card.grocery_card.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.grocery_card.grocery_card.dto.UsersGroup;
 import com.grocery_card.grocery_card.model.theallgroup.TheAllGroup;
-import jakarta.persistence.Lob;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 

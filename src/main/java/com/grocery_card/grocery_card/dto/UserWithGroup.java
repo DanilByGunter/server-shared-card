@@ -1,6 +1,7 @@
 package com.grocery_card.grocery_card.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.grocery_card.grocery_card.model.groupid.TheGroupId;
 import com.grocery_card.grocery_card.model.user.User;
 
 public class UserWithGroup {
@@ -8,17 +9,24 @@ public class UserWithGroup {
     private long idGroup;
     @JsonProperty("name_group")
     private String nameGroup;
-    @JsonProperty("id_user")
-    private long idUser;
+    private TheGroupId user;
 
-    public UserWithGroup(long idGroup, String nameGroup, long idUser) {
+    public UserWithGroup(long idGroup, String nameGroup, TheGroupId user) {
         this.idGroup = idGroup;
         this.nameGroup = nameGroup;
-        this.idUser = idUser;
+        this.user = user;
 
     }
 
     public UserWithGroup() {
+    }
+
+    public TheGroupId getUser() {
+        return user;
+    }
+
+    public void setUser(TheGroupId user) {
+        this.user = user;
     }
 
     public String getNameGroup() {
@@ -37,11 +45,5 @@ public class UserWithGroup {
         this.idGroup = idGroup;
     }
 
-    public long getIdUser() {
-        return idUser;
-    }
 
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
 }

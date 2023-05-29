@@ -15,7 +15,4 @@ public interface TheGroupIdRepository {
     void save(long id, TheGroupId theGroupId);
     void delete(long id, long id_user);
     List<UsersGroup> getAll(long id);
-    TheAllGroupWithUsers getTheAllGroupWithUsers(UserWithGroup user);
-//    public List<UserswithGroup> getUsersWithGorup(long id);
-//    TheAllGroupWithUsers getGroup(long id);
 }

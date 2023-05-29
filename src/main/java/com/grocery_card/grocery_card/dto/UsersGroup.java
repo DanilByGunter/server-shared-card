@@ -1,17 +1,17 @@
 package com.grocery_card.grocery_card.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Lob;
 
 import java.util.Arrays;
 
 public class UsersGroup {
-    @JsonProperty("id")
+
     private Long id;
-    @JsonProperty("name")
+
     private String name;
-    @JsonProperty("photo")
+
     private byte[] photo;
-    @JsonProperty("status")
     private int status;
 
     public UsersGroup() {}

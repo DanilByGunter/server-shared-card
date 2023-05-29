@@ -23,11 +23,14 @@ public class GroupController {
     private TheAllGroupDao theAllGroupDao;
     @GetMapping("/get_all")
     public List<TheAllGroup> getAllGroups(){
-        return theAllGroupDao.getAllGroups();}
+        return theAllGroupDao.getAllGroups();
+    }
 
     @GetMapping("/{id}")
     public TheAllGroup getGroupById(@PathVariable("id") Long id) {
-        return theAllGroupDao.getGroupById(id);}
+        TheAllGroup group = theAllGroupDao.getGroupById(id);
+        return group;
+    }
 
     @GetMapping("/last_id")
     public Long findLastId(){
@@ -42,16 +45,15 @@ public class GroupController {
         theAllGroupDao.updateGroupPhoto(group.getId(), group.getPhoto());}
 
     @PostMapping("/save")
-    public Long save(@Validated @RequestBody TheAllGroupWithUserId theAllGroup){
+    public Long save(@Validated @RequestBody TheAllGroup theAllGroup){
         BeanFactory context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TheGroupIdRepository theGroupIdRepository = (TheGroupIdRepository) context.getBean("theGroupIdRepository");
         CheckRepository checkRepository = (CheckRepository) context.getBean("checkRepository");
         TargetRepository targetRepository = (TargetRepository) context.getBean("targetRepository");
 
-        theAllGroupDao.save(theAllGroup.getAllGroup());
+        theAllGroupDao.save(theAllGroup);
         Long id = findLastId();
         theGroupIdRepository.createTable(id);
-        theGroupIdRepository.save(id,theAllGroup.getGroupId());
         checkRepository.createTable(id);
         targetRepository.createTable(id);
         return id;
